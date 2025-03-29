@@ -1,0 +1,36 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/order/order",
+    "pages/goods/goods",
+    "pages/personal_center/personal_center"
+  ],
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#C6D6F2",
+    "backgroundColor": "#FFFFFF",
+    "font-size": "large",
+    "list":[
+      {"pagePath": "pages/home/home","text": "首页","iconPath": "/pages/image/tabBar/shouye.png","selectedIconPath": "/pages/image/tabBar/shouye.png"},
+      {"pagePath": "pages/goods/goods","text": "点餐","iconPath": "/pages/image/tabBar/jiuping.png","selectedIconPath": "/pages/image/tabBar/jiuping.png"},
+      {"pagePath": "pages/order/order","text": "订单","iconPath": "/pages/image/tabBar/dingdan.png","selectedIconPath": "/pages/image/tabBar/dingdan.png"},
+      {"pagePath": "pages/personal_center/personal_center","text": "个人中心","iconPath": "/pages/image/tabBar/gerenzhongxin.png","selectedIconPath": "/pages/image/tabBar/gerenzhongxin.png"}
+    ]
+  },
+  "usingComponents": {
+    "t-swiper": "tdesign-miniprogram/swiper/swiper",
+    "t-swiper-nav": "tdesign-miniprogram/swiper-nav/swiper-nav",
+    "t-divider": "tdesign-miniprogram/divider/divider",
+    "t-icon": "tdesign-miniprogram/icon/icon"
+  },
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

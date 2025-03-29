@@ -1,0 +1,8 @@
+{
+    "component": true,
+    "navigationStyle": "custom",
+    "navigationBarBackgroundColor": "#00000000",
+    "usingComponents": {
+      "t-swiper": "tdesign-miniprogram/swiper/swiper"
+    }
+}

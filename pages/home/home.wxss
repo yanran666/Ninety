@@ -1,0 +1,84 @@
+/* pages/home/home.wxss */
+/* 轮播图容器 */
+.fullscreen_swiper {
+  position: relative;
+  margin-top: -10px;  /* 向上偏移，覆盖状态栏 */
+}
+.name{
+  display: block;
+  font-size: medium;
+  margin-bottom: 20px;
+}
+.img {
+  width: 100%;
+  height: 100%;
+}
+.custom_card {
+  position: absolute;
+  top: 340px; /* 适当调整以覆盖轮播图 */
+  left: 55%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 400px;
+  background: #ffffff;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.1);
+  /* border-radius: 20rpx; */
+  padding: 40rpx;
+}
+
+.order_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 20px;
+  justify-content: space-around; /* 或者 space-between 根据需要调整 */
+  margin: 20px;
+  margin-right: 40px;
+}
+.divider_h{
+  display: block;
+  margin-top: 50px;
+  background-color: black;
+}
+.order_text {
+  flex: 1;
+  text-align: center;
+  font-size: x-large;
+  color: black;
+}
+.divider_v {
+  width: 1rpx;
+  height: 70rpx !important;
+  background-color: #ccc;
+  margin: 0 10rpx;
+}
+.feature_list{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 55px;
+  margin-right: 20px;
+  padding: 16rpx 1rpx;
+}
+.feature{
+  flex: 0 0 25%;
+  text-align: center;
+  margin-bottom: 30rpx;
+  color: var(--td-text-color-primary);
+}
+.feature_text{
+  font-size: 24rpx;
+  color: black;
+}
+.title{
+  flex: 1;
+  text-align: center;
+  font-size: x-large;
+  margin-top: 45px;
+  margin-right: 25px;
+}
+.small_title{
+  flex: 1;
+  text-align: center;
+  font-size: medium;
+  margin-right: 25px;
+}

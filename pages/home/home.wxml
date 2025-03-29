@@ -1,0 +1,48 @@
+<!--pages/home/home.wxml-->
+<t-swiper
+
+  current="{{current}}"
+  autoplay="{{autoplay}}"
+  duration="{{duration}}"
+  interval="{{interval}}"
+  list="{{swiperList}}"
+  height="350px"
+  easing-function="easeInOutCubic"
+  navigation="{{ { type: 'dots-bar' } }}"
+/>
+<!-- 点餐按钮，点击后跳转到点餐页面 -->
+<t-card class="custom_card">
+  <view class="card_content">
+    <text class="name">龙套</text>
+    <t-divider class="divider_h" />
+    <view class="order_container">
+      <text bindtap="handleOrderClick" class="order_text">到店取</text>
+      <t-divider layout="vertical" class="divider_v" />
+      <text bindtap="handleOrderClick" class="order_text">喜外送</text>
+    </view>
+    <view class="feature_list">
+      <view class="feature">
+        <t-icon name="beer" size="48rpx" data-name="beer" />
+        <view class="feature_text">配方透明</view>
+      </view>
+      <view class="feature">
+        <t-icon name="cherry" size="48rpx" data-name="cheery" />
+        <view class="feature_text">天然选材</view>
+      </view>
+      <view class="feature">
+        <t-icon name="tea" size="48rpx" data-name="cheery" />
+        <view class="feature_text">现场调配</view>
+      </view>
+      <view class="feature">
+        <t-icon name="verified" size="48rpx" data-name="cheery" />
+        <view class="feature_text">品质保障</view>
+      </view>
+    </view>
+    <view class="title">
+    N I N E T Y
+    </view>
+    <view class="small_title">
+    即 刻 酒 零
+    </view>
+  </view>
+</t-card>
