@@ -1,2 +1,116 @@
-<!--pages/goods/goods.wxml-->
-<text>pages/goods/goods.wxml</text>
+<!-- 顶部卡片栏 -->
+<t-card class="custom_card">
+  <view class="card_content">
+    <view class="order_container">
+      <text bindtap="handleOrderClick" class="order_text">到店取</text>
+      <t-divider layout="vertical" class="divider_v" />
+      <text bindtap="handleOrderClick" class="order_text">喜外送</text>
+    </view>
+    <text class="location_text">酒零酒馆 ></text>
+  </view>
+</t-card>
+
+<!-- 商品展示区域 -->
+<view class="page_wrapper">
+  <view class="menu_container">
+    <!-- 左侧分类栏 -->
+    <scroll-view scroll-y="true" class="category_list">
+      <block wx:for="{{categorizedProducts}}" wx:key="anchorId">
+        <view class="category_item_wrapper">
+      <!-- ✅ 左边文字 -->
+      <view 
+        class="category_item {{activeCategoryIndex === index ? 'active' : ''}}"
+        bindtap="scrollToCategory"
+        data-index="{{index}}"
+        data-id="{{item.anchorId}}"
+      >
+        {{item.category}}
+      </view>
+
+      <!-- ✅ 右侧滑块 -->
+      <view class="slider {{activeCategoryIndex === index ? 'slider-active' : ''}}"></view>
+    </view>
+      </block>
+    </scroll-view>
+
+    <!-- 右侧商品列表 -->
+    <scroll-view scroll-y="true" class="product_list" show-scrollbar="false" scroll-into-view="{{activeAnchorId}}" scroll-with-animation bindscroll="onProductScroll">
+        <block wx:for="{{categorizedProducts}}" wx:for-item="categoryItem" wx:key="anchorId">
+      <view class="anchor-spacer" id="{{categoryItem.anchorId}}"></view>
+      <view class="category_block">
+        <view class="category_title">{{categoryItem.category}}</view>
+        <block wx:for="{{categoryItem.products}}" wx:for-item="product" wx:key="product_id">
+          <view class="product_card">
+            <image class="product_image" src="{{product.image}}" mode="aspectFill" />
+            <view class="product_info">
+              <text class="product_name">{{product.name}}</text>
+              <text class="product_desc">{{product.description}}</text>
+              <view class="info_bottom">
+                <text class="product_price">￥{{product.price}}</text>
+                <button class="spec_button" bindtap="goToDetail" data-id="{{product.product_id}}">选规格</button>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </block>
+      <view style="height: 1000px;"></view>
+    </scroll-view>
+  </view>
+<!-- ✅ 替换为单层固定购物栏 -->
+<view class="cart-bar" wx:if="{{showCartBar}}">
+  <view class="cart-left">
+    <view class="cart-icon-wrapper" bindtap="toggleCartPopup">
+      <image class="cart-icon" src="/pages/image/cart-icon.png" mode="aspectFit" />
+      <text class="cart-count-overlay">{{cartCount}}</text>
+    </view>
+    <text class="cart-total">￥{{cartTotal}}</text>
+  </view>
+  <button class="checkout-btn" bindtap="goToCheckout">结算</button>
+</view>
+<!-- 🛒 浮动购物车卡片 -->
+<view class="cart-popup {{hideCartPopup ? 'slide-out' : ''}}" wx:if="{{showCartPopup}}" animation="{{cartPopupAnimation}}">
+
+  <!-- 顶部操作栏 -->
+  <view class="cart-popup-header">
+    <view class="cart-all-wrapper">
+      <view class="custom-checkbox-all {{isAllSelected ? 'checked' : ''}}" bindtap="toggleSelectAllManual"></view>
+      <text class="cart-all-text">全选</text>
+    </view>
+
+
+    <image class="cart-delete-icon" src="/pages/image/delete-icon.png" mode="aspectFit" bindtap="deleteSelected" />
+  </view>
+
+  <view class="cart-divider"></view>
+
+  <!-- 购物车商品列表 -->
+  <scroll-view scroll-y="true" class="cart-product-list">
+    <block wx:for="{{cartList}}" wx:for-item="item" wx:key="id">
+      <view class="cart-item {{item.removing ? 'removing-slide' : ''}}"  wx:if="{{item.quantity > 0}}">
+
+        <view class="custom-checkbox {{item.checked ? 'checked' : ''}}" data-id="{{item.id}}" bindtap="toggleItemCheck">
+        </view>
+
+        <image class="cart-item-img" src="{{item.image}}" mode="aspectFill" />
+
+        <view class="cart-item-info">
+          <text class="cart-item-name">{{item.name}}</text>
+          <text class="cart-item-specs" bindtap="reselectSpec" data-id="{{item.id}}" data-spec="{{item.selectedSpec}}">{{item.selectedSpec}} ></text>
+          <view class="cart-item-bottom">
+            <text class="cart-item-price">￥{{item.price}}</text>
+            <view class="cart-quantity-ctrl">
+              <view class="circle gray" bindtap="decreaseCartQuantity" data-id="{{item.id}}">-</view>
+              <text class="quantity">{{item.quantity}}</text>
+              <view class="circle black" bindtap="increaseCartQuantity" data-id="{{item.id}}">+</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="cart-divider-line"></view>
+    </block>
+  </scroll-view>
+</view>
+
+
+</view>

@@ -1,0 +1,214 @@
+.detail-wrapper {
+  font-family: "PingFang SC", sans-serif;
+  color: #333;
+}
+
+.detail-page {
+  font-family: "PingFang SC", sans-serif;
+  color: #333;
+}
+
+.product-image {
+  width: 100%;
+  max-width: 710rpx; /* 假设屏幕宽度为750rpx，减掉左右padding */
+  height: 400rpx;
+  border-radius: 8rpx;
+}
+
+/* ✅ 内容整体右偏移 + 统一宽度 */
+.page-content {
+  margin-left: 50rpx;
+  padding-right: 20rpx;
+  box-sizing: border-box;
+}
+
+.product-name {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-top: 20rpx;
+}
+
+.product-desc {
+  font-size: 28rpx;
+  line-height: 1.6;
+  color: #666;
+  margin: 20rpx 0;
+}
+
+.spec-group {
+  margin: 30rpx 0;
+}
+
+.spec-title {
+  font-size: 26rpx;
+  color: #999;
+  margin-bottom: 10rpx;
+}
+
+.spec-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.spec-btn {
+  border: 1rpx solid #aaa;
+  padding: 10rpx 20rpx;
+  font-size: 26rpx;
+  color: #333;
+}
+
+.spec-btn.selected {
+  background-color: #000;
+  color: #fff;
+  border: none;
+}
+
+.comment-section {
+  margin-top: 40rpx;
+}
+
+.comment-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.comment-item {
+  display: flex;
+  margin-bottom: 30rpx;
+}
+
+.avatar {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+.comment-content .username {
+  font-weight: bold;
+}
+
+.comment-content .stars {
+  color: #f90;
+  margin: 6rpx 0;
+}
+
+.comment-content .text {
+  color: #555;
+}
+
+.detail_image {
+  width: 100%;
+  margin-right: 10rpx; /* 向右偏移 */
+  border-radius: 8rpx;
+}
+
+.cart-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  padding: 20rpx;
+  box-shadow: 0 -2rpx 10rpx rgba(0,0,0,0.05);
+  z-index: 999;
+}
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto 20rpx;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 10rpx;
+}
+
+.save-text {
+  font-size: 26rpx;
+  color: #333;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.circle {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50rpx;
+  font-size: 32rpx;
+  margin: 0 10rpx;
+}
+
+.circle.gray {
+  background: #fff;
+  border: 1px solid #999;
+  color: #999;
+}
+
+.circle.black {
+  background: #000;
+  color: #fff;
+}
+
+.quantity {
+  font-size: 28rpx;
+}
+
+.add-to-cart-btn {
+  margin-top: 20rpx;
+  width: 90%;
+  margin-left: 5%;
+  background: #000;
+  color: #fff;
+  font-size: 30rpx;
+  padding: 20rpx 0;
+  border-radius: 0rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.price-text {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #fff;
+}
+
+.btn-text {
+  font-size: 30rpx;
+  color: #fff;
+}
+.like-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  padding-left: 10rpx;  /* 🔧 向右移动一点 */
+}
+
+.like-icon {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.like-text {
+  font-size: 26rpx;
+  color: #999;
+}

@@ -5,30 +5,53 @@
     "pages/logs/logs",
     "pages/order/order",
     "pages/goods/goods",
-    "pages/personal_center/personal_center"
+    "pages/personal_center/personal_center",
+    "pages/detail/detail"
   ],
+  "window": {
+    "navigationBarTitleText": "酒零酒馆",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f5f5f5"
+  },
   "tabBar": {
-    "color": "#999999",
-    "selectedColor": "#C6D6F2",
+    "color": "#DFDFDF",
+    "selectedColor": "#000000",
     "backgroundColor": "#FFFFFF",
-    "font-size": "large",
-    "list":[
-      {"pagePath": "pages/home/home","text": "首页","iconPath": "/pages/image/tabBar/shouye.png","selectedIconPath": "/pages/image/tabBar/shouye.png"},
-      {"pagePath": "pages/goods/goods","text": "点餐","iconPath": "/pages/image/tabBar/jiuping.png","selectedIconPath": "/pages/image/tabBar/jiuping.png"},
-      {"pagePath": "pages/order/order","text": "订单","iconPath": "/pages/image/tabBar/dingdan.png","selectedIconPath": "/pages/image/tabBar/dingdan.png"},
-      {"pagePath": "pages/personal_center/personal_center","text": "个人中心","iconPath": "/pages/image/tabBar/gerenzhongxin.png","selectedIconPath": "/pages/image/tabBar/gerenzhongxin.png"}
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "/pages/image/tabBar/shouye.png",
+        "selectedIconPath": "/pages/image/tabBar/shouye_1.png"
+      },
+      {
+        "pagePath": "pages/goods/goods",
+        "text": "点餐",
+        "iconPath": "/pages/image/tabBar/jiuping.png",
+        "selectedIconPath": "/pages/image/tabBar/jiuping_1.png"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "text": "订单",
+        "iconPath": "/pages/image/tabBar/dingdan.png",
+        "selectedIconPath": "/pages/image/tabBar/dingdan_1.png"
+      },
+      {
+        "pagePath": "pages/personal_center/personal_center",
+        "text": "个人中心",
+        "iconPath": "/pages/image/tabBar/gerenzhongxin.png",
+        "selectedIconPath": "/pages/image/tabBar/gerenzhongxin_1.png"
+      }
     ]
   },
   "usingComponents": {
+    "t-button": "tdesign-miniprogram/button/button",
+    "t-divider": "tdesign-miniprogram/divider/divider",
     "t-swiper": "tdesign-miniprogram/swiper/swiper",
     "t-swiper-nav": "tdesign-miniprogram/swiper-nav/swiper-nav",
-    "t-divider": "tdesign-miniprogram/divider/divider",
     "t-icon": "tdesign-miniprogram/icon/icon"
-  },
-  "window": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarBackgroundColor": "#ffffff"
   },
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",

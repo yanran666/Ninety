@@ -8,4 +8,13 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+page {
+  font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+}
 
+/* 隐藏滚动条，但仍然可以滚动 */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}

@@ -1,0 +1,104 @@
+<view class="detail-wrapper">
+
+  <!-- ✅ 整体右偏 + 宽度适配的内容区域 -->
+  <view class="page-content">
+    <image class="product-image" src="{{product.image}}" mode="aspectFit"></image>
+
+    <view class="product-name">{{product.name}}</view>
+
+    <t-divider />
+
+    <view class="product-desc">{{product.description}}</view>
+
+    <t-divider />
+
+<!-- 🍧 冰量规格 -->
+<view class="spec-group">
+  <view class="spec-title">冰量</view>
+  <view class="spec-options">
+    <block wx:for="{{specs.ice}}" wx:key="index">
+      <view 
+        class="spec-btn {{selectedOptions.ice === item ? 'selected' : ''}}" 
+        bindtap="selectSpec" 
+        data-type="ice" 
+        data-value="{{item}}"
+      >
+        {{item}}
+      </view>
+    </block>
+  </view>
+</view>
+
+<!-- 🍬 甜度 -->
+<view class="spec-group">
+  <view class="spec-title">甜度</view>
+  <view class="spec-options">
+    <block wx:for="{{specs.sweetness}}" wx:key="index">
+      <view 
+        class="spec-btn {{selectedOptions.sweetness === item ? 'selected' : ''}}" 
+        bindtap="selectSpec" 
+        data-type="sweetness" 
+        data-value="{{item}}"
+      >
+        {{item}}
+      </view>
+    </block>
+  </view>
+</view>
+
+<!-- 🥃 酒劲 -->
+<view class="spec-group">
+  <view class="spec-title">酒劲</view>
+  <view class="spec-options">
+    <block wx:for="{{specs.strength}}" wx:key="index">
+      <view 
+        class="spec-btn {{selectedOptions.strength === item ? 'selected' : ''}}" 
+        bindtap="selectSpec" 
+        data-type="strength" 
+        data-value="{{item}}"
+      >
+        {{item}}
+      </view>
+    </block>
+  </view>
+</view>
+
+<!-- 💬 评论 -->
+<view class="comment-section">
+  <view class="comment-title">用户评论</view>
+  <block wx:for="{{comments}}" wx:key="id">
+    <view class="comment-item">
+      <image class="avatar" src="{{item.avatar}}" mode="aspectFill" />
+      <view class="comment-content">
+        <view class="username">{{item.name}}</view>
+        <view class="stars">⭐️ x {{item.score}}</view>
+        <view class="text">{{item.content}}</view>
+      </view>
+    </view>
+  </block>
+</view>
+<!-- 底部浮动购物栏 -->
+<view class="cart-bar">
+  <view class="top-row">
+    <view class="like-wrapper" bindtap="toggleFavorite">
+    <image class="like-icon" src="{{isFavorited ? redHeartUrl : grayHeartUrl}}" />
+    <text class="like-text">保存口味</text>
+    </view>
+
+    <view class="right">
+      <view class="circle gray" bindtap="decreaseQuantity">-</view>
+      <text class="quantity">{{quantity}}</text>
+      <view class="circle black" bindtap="increaseQuantity">+</view>
+    </view>
+  </view>
+
+  <button class="add-to-cart-btn" bindtap="addToCart">
+  <text class="price-text">￥{{totalPrice}}</text>
+  <text class="btn-text">加入购物袋</text>
+  </button>
+
+</view>
+
+
+  </view>
+</view>
