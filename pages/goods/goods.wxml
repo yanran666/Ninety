@@ -2,11 +2,11 @@
 <t-card class="custom_card">
   <view class="card_content">
     <view class="order_container">
-      <text bindtap="handleOrderClick" class="order_text">到店取</text>
+      <text bindtap="switchMode" class="order_text {{selectedMode === '到店取' ? 'active' : ''}}" data-mode="到店取">到店取</text>
       <t-divider layout="vertical" class="divider_v" />
-      <text bindtap="handleOrderClick" class="order_text">喜外送</text>
+      <text bindtap="switchMode" class="order_text {{selectedMode === '喜外送' ? 'active' : ''}}" data-mode="喜外送">喜外送</text>
     </view>
-    <text class="location_text">酒零酒馆 ></text>
+    <text class="location_text">{{locationText}}</text>
   </view>
 </t-card>
 

@@ -1,6 +1,10 @@
 .detail-wrapper {
   font-family: "PingFang SC", sans-serif;
   color: #333;
+
+  min-height: 100vh;
+  padding-bottom: 200rpx; /* 给底部浮动按钮留空间 */
+  box-sizing: border-box;
 }
 
 .detail-page {
@@ -211,4 +215,28 @@
 .like-text {
   font-size: 26rpx;
   color: #999;
+}
+
+.stars {
+  display: flex;
+  gap: 2rpx;
+}
+
+.star {
+  font-size: 24rpx;
+}
+
+
+/* detail.wxss */
+.stars {
+  display: flex;
+  margin-top: 4rpx;
+}
+.star {
+  font-size: 28rpx;
+  color: #ccc;
+  margin-right: 4rpx;
+}
+.star.filled {
+  color: #ffc107;
 }

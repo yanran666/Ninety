@@ -1,0 +1,343 @@
+.checkout-page {
+  background-color: #f5f5f5;
+  min-height: 100vh; /* 避免高度不够时卡片悬空 */
+  padding: 0 20rpx;
+}
+
+.top-card {
+  background-color: white;
+  padding: 32rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.05);
+}
+
+.mode-tag {
+  background-color: black;
+  color: white;
+  padding: 6rpx 20rpx;
+  font-size: 24rpx;
+  display: inline-block;
+  margin-bottom: 12rpx;
+}
+
+.store-or-user .store-text {
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+  display: block;
+}
+
+.time-info {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+}
+
+.eat-options {
+  display: flex;
+  justify-content: space-between;
+  gap: 20rpx;
+}
+
+.eat-option {
+  border: 1rpx solid #ccc;
+  padding: 20rpx;
+  flex: 1;
+  position: relative;
+  background-color: white;
+  box-sizing: border-box;
+
+  /* ✅ 新增布局控制 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+.eat-option.active {
+  border-color: black;
+}
+
+.option-title {
+  font-weight: bold;
+  font-size: 26rpx;
+  color: black;
+  display: block;
+  margin-bottom: 6rpx;
+}
+
+.option-sub {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.divider {
+  border-bottom: 1rpx solid #eee;
+  margin: 20rpx 0;
+}
+
+/* 黑色三角标（右上角） */
+.triangle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-top: 36rpx solid black;
+  border-left: 36rpx solid transparent;
+  z-index: 1;
+}
+
+/* 三角形上的白色勾勾 */
+.triangle-check {
+  position: absolute;
+  top: 2rpx;
+  right: 4rpx;
+  color: white;
+  font-size: 22rpx;
+  z-index: 2;
+}
+
+
+/* 商品明细 */
+
+.product-card {
+  background-color: white;
+  padding: 32rpx;
+  margin-top: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.product-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12rpx 0;
+}
+
+.product-img {
+  width: 96rpx;
+  height: 96rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+  border: 1rpx solid #eee;
+  object-fit: cover;
+}
+
+.product-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.product-name {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #000;
+}
+
+.product-spec {
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 4rpx;
+}
+
+.product-meta {
+  text-align: right;
+}
+
+.product-price {
+  font-size: 26rpx;
+  color: #000;
+  display: block;
+}
+
+.product-quantity {
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 4rpx;
+}
+
+.divider-line {
+  border-bottom: 1rpx solid #eee;
+  margin: 12rpx 0;
+}
+
+.product-total {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20rpx;
+}
+
+.total-label {
+  font-size: 26rpx;
+  color: #666;
+  margin-right: 12rpx;
+}
+
+.total-price {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #000;
+}
+
+
+
+.info-card {
+  background-color: white;
+  padding: 32rpx;
+  margin-top: 20rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+}
+
+.info-label {
+  font-size: 26rpx;
+  color: #000;
+  font-weight: bold;
+}
+
+.info-value {
+  font-size: 24rpx;
+  color: #000;
+}
+
+.gray {
+  color: #999;
+}
+
+/* 电话输入区域 */
+.phone-row {
+  position: relative;
+}
+
+.phone-input {
+  font-size: 24rpx;
+  text-align: right;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  width: 220rpx;
+  padding-right: 40rpx;
+}
+
+.edit-icon {
+  position: absolute;
+  right: 0;
+  width: 32rpx;
+  height: 32rpx;
+}
+
+/* 分割线 */
+.divider-line {
+  border-bottom: 1rpx solid #eee;
+}
+
+/* 弹窗蒙层 */
+.remark-mask {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 弹窗主体 */
+.remark-popup {
+  background-color: #fff;
+  width: 80%;
+  padding: 30rpx;
+  box-sizing: border-box;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 备注输入框 */
+.remark-input {
+  width: 100%;
+  height: 160rpx;
+  font-size: 26rpx;
+  padding: 20rpx;
+  border: 1rpx solid #ddd;
+  box-sizing: border-box;
+}
+
+/* 弹窗按钮 */
+.popup-actions {
+  margin-top: 30rpx;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20rpx;
+}
+
+.popup-btn {
+  font-size: 26rpx;
+  padding: 12rpx 24rpx;
+  background-color: #eee;
+  border: none;
+}
+
+.popup-btn.confirm {
+  background-color: black;
+  color: white;
+}
+
+.checkout-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background-color: white;
+  padding: 30rpx 32rpx;
+  box-shadow: 0 -2rpx 8rpx rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkout-info {
+  display: flex;
+  align-items: baseline;
+  padding-bottom: 20rpx;
+}
+
+.checkout-label {
+  font-size: 26rpx;
+  color: #000;
+  margin-right: 8rpx;
+}
+
+.checkout-amount {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #000;
+}
+
+.checkout-btn {
+  background-color: black;
+  color: white;
+  font-size: 26rpx;
+  padding: 15rpx 40rpx;
+  bottom: 15rpx;
+  left: 150rpx;
+  border: none;
+  border-radius: 5rpx;
+}

@@ -1,3 +1,5 @@
+const { baseURL } = require('../../../utils/baseURL');
+
 Page({
   data: {
     product: null,
@@ -11,22 +13,7 @@ Page({
       sweetness: ['无糖', '三分糖', '五分糖'],
       strength: ['微醺', '适中', '烈一点']
     },
-    comments: [
-      {
-        id: 1,
-        avatar: 'https://randomuser.me/api/portraits/women/68.jpg',
-        name: '小酒客',
-        score: 5,
-        content: '非常好喝，酒香四溢~'
-      },
-      {
-        id: 2,
-        avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
-        name: '文艺青年',
-        score: 4,
-        content: '口感丰富，颜值也很高。'
-      }
-    ],
+    comments: [],
 
     // ❤️ 收藏
     isFavorited: false,
@@ -42,14 +29,19 @@ Page({
     const productId = options.id;
     const fromCart = options.fromCart === 'true';
     const preSelectedSpec = decodeURIComponent(options.spec || '');
+    const userInfo = getApp().globalData.userInfo;
+    const user_id = userInfo ? userInfo.user_id : null;
   
     if (!productId) {
       wx.showToast({ title: '参数错误', icon: 'none' });
       return;
     }
   
+    this.setData({ productId }); // 保存 id 方便收藏使用
+  
+    // 获取商品详情
     wx.request({
-      url: `http://localhost:3000/api/products/${productId}`,
+      url: `${baseURL}/api/products/${productId}`,
       success: (res) => {
         const product = res.data;
         if (!product || !product.price) {
@@ -63,7 +55,7 @@ Page({
           strength: this.data.specs.strength[0]
         };
   
-        if (fromCart && preSelectedSpec) {
+        if (preSelectedSpec) {
           const [ice, sweetness, strength] = preSelectedSpec.split('/');
           selectedOptions = { ice, sweetness, strength };
         }
@@ -74,11 +66,42 @@ Page({
           quantity: 1,
           totalPrice: Number(product.price).toFixed(2)
         });
-      },
-      fail: () => {
-        wx.showToast({ title: '加载失败', icon: 'error' });
       }
     });
+  
+    // 查询是否已收藏
+    wx.request({
+      url: `${baseURL}/api/favorites/check`,
+      method: 'GET',
+      data: {
+        user_id,
+        product_id: productId
+      },
+      success: (res) => {
+        this.setData({
+          isFavorited: res.data.isFavorited
+        });
+      }
+    });
+
+    // 查询评论列表
+    wx.request({
+      url: `${baseURL}/api/reviews`,
+      method: 'GET',
+      data: { product_id: productId },
+      success: (res) => {
+        console.log('[商品评论]', res.data);
+        const comments = res.data.map(r => ({
+          ...r,
+          score: Number(r.score)
+        }));
+        this.setData({
+          comments
+        });
+      }
+    });
+
+    
   },
 
   // 切换规格
@@ -91,8 +114,33 @@ Page({
 
   // ❤️ 切换收藏
   toggleFavorite() {
-    this.setData({
-      isFavorited: !this.data.isFavorited
+    const { isFavorited, productId, selectedOptions } = this.data;
+    const userInfo = getApp().globalData.userInfo;
+    const user_id = userInfo ? userInfo.user_id : null;
+  
+    const url = `${baseURL}/api/favorites`;
+    const method = isFavorited ? 'DELETE' : 'POST';
+  
+    const spec = `${selectedOptions.ice}/${selectedOptions.sweetness}/${selectedOptions.strength}`;
+  
+    wx.request({
+      url,
+      method,
+      header: {
+        'content-type': 'application/json'
+      },
+      data: {
+        user_id,
+        product_id: productId,
+        spec
+      },
+      success: () => {
+        this.setData({ isFavorited: !isFavorited });
+        wx.showToast({
+          title: isFavorited ? '已取消收藏' : '已收藏',
+          icon: 'success'
+        });
+      }
     });
   },
 

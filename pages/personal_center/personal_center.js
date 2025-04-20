@@ -1,66 +1,70 @@
-// pages/personal_center/personal_center.js
+const { baseURL } = require('../../utils/baseURL');
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    isAdmin: false
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow() {
-
+    this.setData({
+      isAdmin: wx.getStorageSync('isAdmin') || false
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
+  toggleRole() {
+    const newRole = !this.data.isAdmin;
+    wx.setStorageSync('isAdmin', newRole);
+    this.setData({ isAdmin: newRole });
 
+    wx.showToast({
+      title: newRole ? '切换为商家' : '切换为用户',
+      icon: 'none'
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
+  goToManageGoods() {
+    wx.navigateTo({
+      url: '/subpackages/admin/manage-goods/manage-goods'
+    });
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
+  goToManageOrders() {
+    wx.navigateTo({ url: '/pages/admin/orders' });
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
+  clearCart() {
+    wx.removeStorageSync('cart');
+    wx.showToast({ title: '购物车已清空', icon: 'none' });
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+  clearOrders() {
+    const userInfo = getApp().globalData.userInfo;
+    if (!userInfo) return;
+  
+    wx.showModal({
+      title: '提示',
+      content: '确定要清空所有订单吗？',
+      success: (res) => {
+        if (res.confirm) {
+          wx.request({
+            url: `${baseURL}/api/orders/clear`,
+            method: 'DELETE',
+            header: { 'content-type': 'application/json' },
+            data: { user_id: userInfo.user_id },
+            success: () => {
+              wx.showToast({ title: '订单已清空' });
+              wx.removeStorageSync('orders'); // 同步清除缓存
+            }
+          });
+        }
+      }
+    });
   }
-})
+  ,
+  goToFavorites() {
+    wx.navigateTo({
+      url: '/subpackages/user/favorites/favorites'
+    });
+  }
+  
+});

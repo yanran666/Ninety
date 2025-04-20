@@ -1,0 +1,31 @@
+<view class="review-page">
+  <!-- ✅ 顶部商品信息展示 -->
+  <view class="product-preview">
+    <image class="product-img" src="{{product.image}}" mode="aspectFill" />
+    <view class="product-info">
+      <text class="product-name">{{product.name}}</text>
+      <text class="product-spec">{{product.selectedSpec}}</text>
+    </view>
+  </view>
+
+  <text class="review-title">为本次订单打个分吧</text>
+
+  <view class="stars">
+    <block wx:for="{{5}}" wx:key="index">
+      <text 
+        class="star {{index < score ? 'filled' : ''}}" 
+        data-index="{{index + 1}}" 
+        bindtap="selectScore"
+      >★</text>
+    </block>
+  </view>
+
+  <textarea 
+    class="review-input" 
+    placeholder="写下你的评价..." 
+    maxlength="200" 
+    bindinput="onReviewInput"
+  ></textarea>
+
+  <button class="submit-btn" bindtap="submitReview">提交评价</button>
+</view>

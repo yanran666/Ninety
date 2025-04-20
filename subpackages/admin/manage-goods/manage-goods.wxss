@@ -1,0 +1,168 @@
+.manage-page {
+  padding: 20rpx;
+}
+.product-card {
+  border: 1px solid #ccc;
+  margin-bottom: 20rpx;
+  padding: 20rpx;
+  border-radius: 12rpx;
+}
+.product-img {
+  width: 100%;
+  height: 300rpx;
+  border-radius: 8rpx;
+}
+.form-group {
+  margin-top: 12rpx;
+}
+input, textarea {
+  border: 1px solid #ccc;
+  border-radius: 8rpx;
+  padding: 8rpx;
+  width: 100%;
+}
+.save-btn {
+  margin-top: 20rpx;
+  background-color: #007aff;
+  color: #fff;
+  border: none;
+  padding: 16rpx;
+  border-radius: 12rpx;
+}
+.manage-goods-page {
+  padding: 20rpx;
+  background-color: #f9f9f9;
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 12rpx;
+  margin-bottom: 24rpx;
+  padding: 20rpx;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.product-header {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20rpx;
+}
+
+.product-img {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 8rpx;
+  object-fit: cover;
+  margin-right: 20rpx;
+}
+
+.product-main-info {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10rpx 20rpx;
+}
+
+.product-field {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 40%;
+  margin-bottom: 10rpx;
+  padding: 0 12rpx;
+}
+
+.product-field text {
+  font-size: 24rpx;
+  margin-bottom: 6rpx;
+  color: #666;
+}
+
+.product-field input {
+  border: 1rpx solid #ccc;
+  padding: 10rpx;
+  border-radius: 6rpx;
+  font-size: 26rpx;
+  background-color: #fefefe;
+}
+
+/* 描述单独展示 */
+.product-desc {
+  margin-top: 10rpx;
+  margin-right: 10rpx;
+  padding: 0 16rpx;
+}
+
+.product-desc textarea {
+  width: 100%;
+  height: 100rpx;
+  border: 1rpx solid #ccc;
+  border-radius: 6rpx;
+  padding: 12rpx;
+  font-size: 26rpx;
+  background-color: #fff;
+}
+
+
+.add-product-btn {
+  background-color: black;
+  color: white;
+  padding: 20rpx;
+  margin: 20rpx;
+  text-align: center;
+  border-radius: 16rpx;
+  font-weight: bold;
+}
+.action-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20rpx;
+  margin-top: 24rpx;
+  padding: 0 10rpx;
+}
+
+.save-btn, .delete-btn {
+  flex: 1;
+  text-align: center;
+  font-size: 28rpx;
+  padding: 12rpx;
+  border-radius: 8rpx;
+}
+
+/* 保存按钮（黑底白字） */
+.save-btn {
+  margin-left: 10rpx;
+  margin-top: 24rpx;
+  background-color: #000;
+  color: #fff;
+  padding: 12rpx;
+  border-radius: 8rpx;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+/* 删除按钮（白底黑字 + 边框） */
+.delete-btn {
+  margin-left: 10rpx;
+  margin-top: 24rpx;
+  background-color: rgb(194, 193, 193);
+  color: #000;
+  padding: 12rpx;
+  border-radius: 8rpx;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+.product-img {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 8rpx;
+  object-fit: cover;
+  margin-right: 20rpx;
+  transition: 0.2s;
+}
+.product-img:active {
+  opacity: 0.7;
+}
+
+
+

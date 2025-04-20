@@ -1,10 +1,18 @@
 // app.js
+const { baseURL } = require('./utils/baseURL');
+
 App({
   globalData: {
     openid: null,
     userInfo: null,
     cart: []
   },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "我们将获取你的地理位置以提供外送服务"
+    }
+  },
+  
 
   onLaunch() {
     // 本地日志（可留可删）
@@ -18,22 +26,23 @@ App({
         if (res.code) {
           // 第二步：发送 code 给后端，换取 openid
           wx.request({
-            url: 'http://127.0.0.1:3000/api/wechat/login', // 你的后端接口地址
+            url: `${baseURL}/api/wechat/login`, // 你的后端接口地址
             method: 'POST',
             data: { code: res.code },
             success: (res) => {
               const openid = res.data.openid;
               this.globalData.openid = openid;
               console.log('✅ openid 获取成功：', openid);
+              wx.setStorageSync('openid', openid);
 
               // 第三步：注册或登录用户（将 openid 存到数据库）
               wx.request({
-                url: 'http://127.0.0.1:3000/api/users',
+                url: `${baseURL}/api/users`,
                 method: 'POST',
                 data: {
                   openid: openid,
-                  nickname: '游客用户', // 可后续替换为用户信息
-                  avatar: 'https://example.com/avatar.png',
+                  nickname: '游客用户', 
+                  avatar: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
                 },
                 success: (res) => {
                   console.log('✅ 用户登录/注册成功：', res.data);

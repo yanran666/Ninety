@@ -1,9 +1,12 @@
+const { baseURL } = require('../../utils/baseURL');
 Page({
   data: {
     categorizedProducts: [],
     activeAnchorId: '' ,
     activeCategoryIndex: 0,
     cartPopupAnimation: {},
+    selectedMode: '到店取',
+    locationText: '酒零酒馆 >',
 
     
     // 🛒 购物车浮动卡片相关
@@ -17,21 +20,28 @@ Page({
   },
 
   goToDetail(e) {
-    console.log('👉 获取的 productId 是：', e.currentTarget.dataset.id);
     const productId = e.currentTarget.dataset.id;
     if (!productId) {
       console.error('❌ 未获取到商品 ID');
       return;
     }
+  
+    const targetUrl = `/subpackages/shop/detail/detail?id=${productId}`;
+    console.log('✅ 跳转路径:', targetUrl);
+  
     wx.navigateTo({
-      url: `/pages/detail/detail?id=${productId}`
+      url: targetUrl
     });
   },
 
   onLoad(options) {
+    const mode = options.mode || '到店取';
+    this.setData({
+      selectedMode: mode
+    });
     // ✅ 请求商品数据
     wx.request({
-      url: 'http://127.0.0.1:3000/api/products',
+      url: `${baseURL}/api/products`,
       method: 'GET',
       success: (res) => {
         const products = Array.isArray(res.data) ? res.data : [];
@@ -67,8 +77,10 @@ Page({
     const cart = wx.getStorageSync('cart') || [];
     const count = cart.reduce((sum, item) => sum + item.quantity, 0);
     const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  
+    const mode = wx.getStorageSync('selectedMode') || '到店取';
+    this.fetchProductList();
     this.setData({
+      selectedMode: mode,
       cartList: cart,
       cartCount: count,
       cartTotal: total.toFixed(2),
@@ -153,8 +165,12 @@ Page({
 
   // ✅ 跳转结算页面
   goToCheckout() {
+    wx.setStorageSync('checkoutItems', this.data.cartList);
+    wx.setStorageSync('checkoutMode', this.data.selectedMode);
+    wx.setStorageSync('checkoutLocation', this.data.locationText);
+
     wx.navigateTo({
-      url: '/pages/cart/cart'
+      url: '/subpackages/shop/checkout/checkout'
     });
   },
   toggleCartPopup() {
@@ -346,9 +362,75 @@ reselectSpec(e) {
 
   // 跳转带参
   wx.navigateTo({
-    url: `/pages/detail/detail?id=${id}&spec=${encodeURIComponent(spec)}&fromCart=true`
+    url: `/subpackages/shop/detail/detail?id=${id}&spec=${encodeURIComponent(spec)}&fromCart=true`
+  });
+},
+switchMode(e) {
+  const mode = e.currentTarget.dataset.mode;
+
+  this.setData({
+    selectedMode: mode
+  });
+
+  if (mode === '喜外送') {
+    wx.getLocation({
+      type: 'wgs84',
+      success: (res) => {
+        const { latitude, longitude } = res;
+
+        // 逆地址解析（推荐用腾讯地图SDK，但我们这里简化处理）
+        wx.request({
+          url: `https://apis.map.qq.com/ws/geocoder/v1/?location=${latitude},${longitude}&key=LXLBZ-ZGN6H-Y7UDN-WHJPE-5WIC5-JXBEY`, // 替换为你的腾讯位置服务Key
+          success: (res) => {
+            const address = res.data.result.address;
+            this.setData({
+              locationText: address
+            });
+          },
+          fail: () => {
+            this.setData({
+              locationText: '电子科技大学中山学院'
+            });
+          }
+        });
+      },
+      fail: () => {
+        // wx.showToast({ title: '需要授权定位', icon: 'none' });
+        this.setData({
+          locationText: '电子科技大学中山学院 >'
+        });
+      }
+    });
+  } else {
+    // 到店取：还原默认显示
+    this.setData({
+      locationText: '酒零酒馆 >'
+    });
+  }
+},
+
+fetchProductList() {
+  wx.request({
+    url: `${baseURL}/api/products`,
+    method: 'GET',
+    success: (res) => {
+      const products = Array.isArray(res.data) ? res.data : [];
+
+      const categories = [...new Set(products.map(p => p.category))];
+      const categorizedProducts = categories.map((cat, index) => ({
+        category: cat,
+        anchorId: `cat${index}`,
+        products: products.filter(p => p.category === cat)
+      }));
+
+      this.setData({ categorizedProducts }); // ✅ 必须设置它
+    }
   });
 }
+
+
+
+
 
 
 

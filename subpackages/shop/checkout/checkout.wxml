@@ -1,0 +1,142 @@
+<!-- 顶端卡片 -->
+<view class="checkout-page">
+  <view class="top-card">
+    <!-- 左上角标签 -->
+    <view class="mode-tag">
+      {{deliveryMethod}}
+    </view>
+
+    <!-- 店名或用户信息 -->
+    <view class="store-or-user">
+      <text class="store-text" wx:if="{{deliveryMethod === '到店取'}}">电子科大店 ></text>
+      <text class="store-text" wx:if="{{deliveryMethod === '喜外送'}}">电子科大中山学院</text>
+    </view>
+
+    <!-- 时间提示 -->
+    <view class="time-info">
+      <text wx:if="{{deliveryMethod === '到店取'}}">现在下单，预计5分钟后取</text>
+      <text wx:if="{{deliveryMethod === '喜外送'}}">张三 18888888888</text> <!-- 占位用 -->
+    </view>
+
+    <!-- 堂食/外带 选项 or 外送时间提示 -->
+    <view wx:if="{{deliveryMethod === '到店取'}}" class="eat-options">
+      <view
+        class="eat-option {{selectedEatType === '堂食' ? 'active' : ''}}"
+        bindtap="selectEatType"
+        data-type="堂食"
+      >
+        <view class="triangle" wx:if="{{selectedEatType === '堂食'}}">
+          <text class="triangle-check">✓</text>
+        </view>
+        <text class="option-title">堂食</text>
+        <text class="option-sub">店内现喝</text>
+      </view>
+
+      <view
+        class="eat-option {{selectedEatType === '外带' ? 'active' : ''}}"
+        bindtap="selectEatType"
+        data-type="外带"
+      >
+        <view class="triangle" wx:if="{{selectedEatType === '外带'}}">
+          <text class="triangle-check">✓</text>
+        </view>
+        <text class="option-title">外带</text>
+        <text class="option-sub">纸袋打包</text>
+      </view>
+    </view>
+    <view wx:if="{{deliveryMethod === '喜外送'}}" class="delivery-time">
+      <view class="divider"></view>
+      <text>现在下单，预计{{deliveryTimeStart}} - {{deliveryTimeEnd}}送达</text>
+    </view>
+  </view>
+  <!-- 商品明细卡片 -->
+  <view class="product-card">
+    <text class="section-title">商品明细</text>
+
+    <block wx:for="{{cartItems}}" wx:key="id">
+      <view class="product-item">
+        <image class="product-img" src="{{item.image}}" mode="aspectFill" />
+
+        <view class="product-info">
+          <text class="product-name">{{item.name}}</text>
+          <text class="product-spec">{{item.selectedSpec}}</text>
+        </view>
+        <view class="product-meta">
+          <text class="product-price">￥{{item.price}}</text>
+          <text class="product-quantity">x{{item.quantity}}</text>
+        </view>
+      </view>
+      <view class="divider-line"></view>
+    </block>
+
+    <view class="product-total">
+      <text class="total-label">小计</text>
+      <text class="total-price">￥{{totalPrice}}</text>
+    </view>
+  </view>
+
+  <!-- 订单信息卡片 -->
+<view class="info-card">
+  <view class="info-row" bindtap="openRemarkModal">
+    <text class="info-label">订单备注</text>
+    <text class="info-value gray">{{remarkText || '请在这写下您的备注 >'}}</text>
+  </view>
+
+  <view class="divider-line"></view>
+
+  <view class="info-row phone-row">
+    <text class="info-label">预留电话</text>
+    <input 
+      class="phone-input" 
+      type="number" 
+      value="{{phoneNumber}}" 
+      bindinput="onPhoneInput"
+      maxlength="11"
+      cursor-spacing="30"
+      placeholder="请输入手机号"
+      focus="{{phoneInputFocused}}"
+      bindblur="onPhoneBlur"
+    />
+    <image 
+      src="/pages/image/edit-icon.png" 
+      class="edit-icon" 
+      bindtap="focusPhoneInput"
+    />
+  </view>
+
+  <view class="divider-line"></view>
+
+  <view class="info-row">
+    <text class="info-label">支付方式</text>
+    <text class="info-value">微信支付</text>
+  </view>
+</view>
+
+<!-- 备注弹窗 -->
+<view wx:if="{{showRemarkModal}}" class="remark-mask">
+  <view class="remark-popup">
+    <textarea 
+      class="remark-input" 
+      value="{{remarkText}}" 
+      placeholder="请输入订单备注"
+      maxlength="100"
+      bindinput="onRemarkInput"
+    />
+    <view class="popup-actions">
+      <button class="popup-btn" bindtap="cancelRemark">取消</button>
+      <button class="popup-btn confirm" bindtap="confirmRemark">确认</button>
+    </view>
+  </view>
+</view>
+
+<!-- 浮动支付栏 -->
+  <view class="checkout-bar">
+    <view class="checkout-info">
+      <text class="checkout-label">待支付：</text>
+      <text class="checkout-amount">￥{{totalPrice}}</text>
+    </view>
+    <button class="checkout-btn" bindtap="submitOrder">去支付</button>
+  </view>
+  <view style="height: 120rpx;"></view>
+
+</view>

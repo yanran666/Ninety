@@ -1,12 +1,26 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/index/index",
-    "pages/logs/logs",
-    "pages/order/order",
     "pages/goods/goods",
-    "pages/personal_center/personal_center",
-    "pages/detail/detail"
+    "pages/order/order",
+    "pages/personal_center/personal_center"
+  ],
+  "subpackages": [
+    {
+      "root": "subpackages/shop",
+      "pages": ["detail/detail", "checkout/checkout"]
+    },
+    {
+      "root": "subpackages/user",
+      "pages": [
+        "review/review",
+        "favorites/favorites"
+      ]
+    },
+    {
+      "root": "subpackages/admin",
+      "pages": ["manage-goods/manage-goods"]
+    }
   ],
   "window": {
     "navigationBarTitleText": "酒零酒馆",

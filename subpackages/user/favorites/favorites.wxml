@@ -1,0 +1,15 @@
+<view class="favorites-page">
+
+<block wx:for="{{favorites}}" wx:key="id">
+  <view class="favorite-item" bindtap="goToDetail" data-id="{{item.product_id}}" data-spec="{{item.spec}}">
+    <image class="product-img" src="{{item.image}}" mode="aspectFill" />
+    <view class="info">
+      <text class="name">{{item.name}}</text>
+      <text class="spec">规格：{{item.spec}}</text>
+    </view>
+    <text class="arrow">›</text>
+  </view>
+  <view class="divider-line"></view>
+</block>
+
+</view>

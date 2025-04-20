@@ -1,1 +1,148 @@
-/* pages/order/order.wxss */
+.order-page {
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  padding: 20rpx;
+}
+
+.order-card {
+  background-color: white;
+  padding: 32rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+  margin: 20rpx;
+}
+
+.order-status {
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.order-status.paid {
+  color: green;
+}
+.order-status.unpaid {
+  color: #e64340;
+}
+
+.order-location {
+  font-size: 26rpx;
+  color: #000;
+  margin-bottom: 4rpx;
+}
+
+.order-time {
+  font-size: 22rpx;
+  color: #888;
+  margin-bottom: 20rpx;
+}
+
+.product-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12rpx 0;
+}
+
+.product-img {
+  width: 96rpx;
+  height: 96rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+  border: 1rpx solid #eee;
+  object-fit: cover;
+}
+
+.product-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.product-name {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #000;
+}
+
+.product-spec {
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 4rpx;
+}
+
+.product-meta {
+  text-align: right;
+}
+
+.product-price {
+  font-size: 26rpx;
+  color: #000;
+  display: block;
+}
+
+.product-quantity {
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 4rpx;
+}
+
+.divider-line {
+  border-bottom: 1rpx solid #eee;
+  margin: 12rpx 0;
+}
+
+.product-total {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20rpx;
+}
+
+.total-label {
+  font-size: 26rpx;
+  color: #666;
+  margin-right: 12rpx;
+}
+
+.total-price {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #000;
+}
+
+.order-remark {
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  color: #333;
+}
+
+.remark-label {
+  font-weight: bold;
+}
+
+.remark-content {
+  margin-left: 8rpx;
+  color: #000;
+}
+
+.review-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10rpx 15rpx;
+  border-top: 1rpx solid #eee;
+  background-color: #f8f8f8;
+}
+
+.review-label {
+  font-size: 26rpx;
+  color: #333;
+}
+
+.arrow {
+  font-size: 30rpx;
+  color: #999;
+}
+
+
+

@@ -10,21 +10,22 @@ Page({
     autoplay: true,
     duration: 500,
     interval: 5000,
+    selectedMode: '到店取',
     swiperList:[
       {
-        value: `/pages/image/carousel/carousel1.jpg`,
+        value: `http://192.168.236.51:3000/public/images/carousel1.jpg`,
         ariaLabel: '图片1',
       },
       {
-        value: `/pages/image/carousel/carousel2.jpg`,
+        value: `http://192.168.236.51:3000/public/images/carousel2.jpg`,
         ariaLabel: '图片2',
       },
       {
-        value: `/pages/image/carousel/carousel3.jpg`,
+        value: `http://192.168.236.51:3000/public/images/carousel3.jpg`,
         ariaLabel: '图片3',
       },
       {
-        value: `/pages/image/carousel/carousel2.jpg`,
+        value: `http://192.168.236.51:3000/public/images/carousel2.jpg`,
         ariaLabel: '图片2',
       },
     ],
@@ -41,10 +42,13 @@ this.setData({
   statusBarHeight: statusBarHeight
 });
   },
-  handleOrderClick() {
+  handleOrderClick(e) {
+    const mode = e.currentTarget.dataset.mode; // ✅ 用 dataset 拿参数
+    wx.setStorageSync('selectedMode', mode);   // ✅ 存入缓存
+  
     wx.switchTab({
-      url: '/pages/goods/goods'  // 使用 switchTab 跳转 TabBar 页面
-    })
+      url: '/pages/goods/goods'
+    });
   },
 
   /**

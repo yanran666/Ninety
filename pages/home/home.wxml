@@ -16,9 +16,9 @@
     <text class="name">龙套</text>
     <t-divider class="divider_h" />
     <view class="order_container">
-      <text bindtap="handleOrderClick" class="order_text">到店取</text>
+      <text data-mode="到店取" bindtap="handleOrderClick" class="order_text">到店取</text>
       <t-divider layout="vertical" class="divider_v" />
-      <text bindtap="handleOrderClick" class="order_text">喜外送</text>
+      <text data-mode="喜外送" bindtap="handleOrderClick" class="order_text">喜外送</text>
     </view>
     <view class="feature_list">
       <view class="feature">

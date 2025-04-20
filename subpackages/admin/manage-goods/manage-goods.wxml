@@ -1,0 +1,50 @@
+<view class="manage-goods-page">
+
+  <view class="add-product-btn" bindtap="addProduct">
+    + 新增商品
+  </view>
+
+  <block wx:for="{{products}}" wx:key="product_id">
+    <view class="product-card">
+      
+      <!-- 商品头部，图片 + 基本字段 -->
+      <view class="product-header">
+        <image data-id="{{item.product_id}}" class="product-img" src="{{item.image}}" mode="aspectFill" bindtap="chooseMedia" />
+        <view class="product-main-info">
+          <view class="product-field">
+            <text>商品名称</text>
+            <input value="{{item.name}}" data-id="{{item.product_id}}" data-field="name" bindinput="handleInput" />
+          </view>
+
+          <view class="product-field">
+            <text>价格</text>
+            <input value="{{item.price}}" data-id="{{item.product_id}}" data-field="price" bindinput="handleInput" />
+          </view>
+
+          <view class="product-field">
+            <text>库存</text>
+            <input value="{{item.stock}}" data-id="{{item.product_id}}" data-field="stock" bindinput="handleInput" />
+          </view>
+
+          <view class="product-field">
+            <text>分类</text>
+            <input value="{{item.category}}" data-id="{{item.product_id}}" data-field="category" bindinput="handleInput" />
+          </view>
+        </view>
+      </view>
+
+      <!-- 商品描述 -->
+      <view class="product-desc">
+        <text>描述</text>
+        <textarea value="{{item.description}}" data-id="{{item.product_id}}" data-field="description" bindinput="handleInput" />
+      </view>
+
+      <!-- 保存按钮 -->
+      <view class="action-row">
+        <view class="delete-btn" data-id="{{item.product_id}}" bindtap="confirmDelete">删除</view>
+        <view class="save-btn" data-id="{{item.product_id}}" bindtap="saveProduct">保存</view>
+      </view>
+
+    </view>
+  </block>
+</view>

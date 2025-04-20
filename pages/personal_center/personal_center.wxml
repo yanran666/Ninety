@@ -1,2 +1,71 @@
-<!--pages/personal_center/personal_center.wxml-->
-<text>pages/personal_center/personal_center.wxml</text>
+<view class="user-page">
+  <!-- 用户昵称 -->
+  <view class="name-card">
+    <text class="user-nickname">昵称：龙套</text>
+    <text class="user-phone">手机号：188****8888</text>
+
+    <view class="menu-item-row" bindtap="goToFavorites">
+      <text class="menu-label">我的收藏</text>
+      <text class="menu-arrow">›</text>
+  </view>
+  </view>
+
+
+  <!-- 身份切换 -->
+  <view class="section-card role-section">
+    <view class="section-header">
+      <text class="section-title">身份设置</text>
+      <button class="role-switch-btn" bindtap="toggleRole">
+        {{ isAdmin ? '切为用户' : '切为商家' }}
+      </button>
+    </view>
+  </view>
+
+
+  <!-- 商家功能（仅管理员可见） -->
+  <view wx:if="{{isAdmin}}" class="section-card">
+    <view class="section-title">商家功能</view>
+
+    <view class="menu-item-row" bindtap="goToManageGoods">
+      <text class="menu-label">商品管理</text>
+      <text class="menu-arrow">›</text>
+    </view>
+
+    <view class="menu-item-row" bindtap="goToManageOrders">
+      <text class="menu-label">订单管理</text>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 系统工具（所有人可见） -->
+  <view class="section-card">
+    <view class="section-title">系统工具</view>
+
+    <view class="menu-item-row" bindtap="clearCart">
+      <text class="menu-label">清空购物车</text>
+      <text class="menu-arrow">›</text>
+    </view>
+
+    <view class="menu-item-row" bindtap="clearOrders">
+      <text class="menu-label">清空订单</text>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+
+
+  <!-- 关于说明 -->
+  <view class="section-card">
+    <text class="section-title">关于</text>
+    <view class="about-text">
+      <view>本小程序为“酒零酒馆”定制开发的小程序，主要用于演示以下功能：</view>
+      <view>· 顾客下单流程（商品浏览、购物车、结算、支付）；</view>
+      <view>· 商家管理功能（商品维护、订单查看、身份切换）；</view>
+      <view>· 同一页面下实现顾客与商家角色切换，便于答辩演示；</view>
+      <view>· 页面设计统一采用黑白极简风，注重展示逻辑与交互细节。</view>
+      <view>· 开发者：杨豪平 </view>
+    </view>
+
+
+  </view>
+</view> 

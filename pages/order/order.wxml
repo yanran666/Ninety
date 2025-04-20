@@ -1,2 +1,58 @@
-<!--pages/order/order.wxml-->
-<text>pages/order/order.wxml</text>
+<view class="order-page">
+  <block wx:for="{{orders}}" wx:for-item="order" wx:key="order_id" wx:for-index="i">
+    <view class="order-card">
+      <!-- 支付状态 -->
+      <view class="order-status {{order.status == 1 ? 'paid' : 'unpaid'}}">
+        {{order.status == 1 ? '已支付' : '待支付'}}
+      </view>
+
+      <!-- 店铺或送达地址 -->
+      <view class="order-location">
+        {{ order.deliveryMethod === '到店取' ? '电子科大店' :
+           (order.locationText ? order.locationText : '送达地址未知') }}
+      </view>
+
+      <!-- 下单时间 -->
+      <view class="order-time">
+        {{order.createdAt}}
+      </view>
+
+      <!-- 商品列表 -->
+      <block wx:for="{{order.items}}" wx:for-item="item" wx:key="product_id">
+        <view class="product-item">
+          <image class="product-img" src="{{item.image}}" mode="aspectFill" />
+          <view class="product-info">
+            <text class="product-name">{{item.name}}</text>
+            <text class="product-spec">{{item.selectedSpec}}</text>
+          </view>
+          <view class="product-meta">
+            <text class="product-price">￥{{item.price}}</text>
+            <text class="product-quantity">x{{item.quantity}}</text>
+          </view>
+        </view>
+
+        <!-- 评论入口 -->
+        <view wx:if="{{!item.reviewed}}" class="review-entry" bindtap="goToReview"
+        data-orderid="{{order.order_id}}" 
+        data-productid="{{item.product_id}}">
+        <text class="review-label">去评论</text>
+        <text class="arrow">›</text>
+      </view>
+
+        <view class="divider-line"></view>
+      </block>
+
+      <!-- 小计 -->
+      <view class="product-total">
+        <text class="total-label">小计</text>
+        <text class="total-price">￥{{order.total}}</text>
+      </view>
+
+      <!-- 备注 -->
+      <view class="order-remark">
+        <text class="remark-label">备注：</text>
+        <text class="remark-content">{{order.remark || '无'}}</text>
+      </view>
+    </view>
+  </block>
+</view>

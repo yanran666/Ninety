@@ -68,21 +68,27 @@
   <view class="comment-title">用户评论</view>
   <block wx:for="{{comments}}" wx:key="id">
     <view class="comment-item">
-      <image class="avatar" src="{{item.avatar}}" mode="aspectFill" />
+      <image class="avatar" src="{{item.avatar || 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'}}" mode="aspectFill" />
       <view class="comment-content">
-        <view class="username">{{item.name}}</view>
-        <view class="stars">⭐️ x {{item.score}}</view>
-        <view class="text">{{item.content}}</view>
+        <view class="username">{{item.nickname}}</view>
+        <!-- ✅ 星级展示（用 class 控制颜色） -->
+        <view class="stars">
+          <block wx:for="{{[1,2,3,4,5]}}" wx:for-item="star" wx:key="star">
+            <text class="star {{star <= item.score ? 'filled' : ''}}">★</text>
+          </block>
+        </view>
+        <view class="text">{{item.comment}}</view>
       </view>
     </view>
   </block>
 </view>
+
 <!-- 底部浮动购物栏 -->
 <view class="cart-bar">
   <view class="top-row">
     <view class="like-wrapper" bindtap="toggleFavorite">
     <image class="like-icon" src="{{isFavorited ? redHeartUrl : grayHeartUrl}}" />
-    <text class="like-text">保存口味</text>
+    <text class="like-text">收藏口味</text>
     </view>
 
     <view class="right">
