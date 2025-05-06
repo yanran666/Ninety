@@ -1,0 +1,62 @@
+<!-- pages/manage-orders/manage-orders.wxml -->
+<view class="order-page">
+  <block wx:for="{{orders}}" wx:for-item="order" wx:for-index="index" wx:key="order_id">
+    <view class="order-card">
+
+      <!-- 头部：地址+时间 + 状态下拉 -->
+      <view class="order-header">
+        <view class="addr-time">
+          <text class="order-location">
+            {{ order.deliveryMethod === '到店取'
+              ? '电子科大店'
+              : (order.locationText || '送达地址未知') }}
+          </text>
+          <text class="order-time">{{ order.formattedTime }}</text>
+        </view>
+
+        <picker
+          class="status-picker"
+          mode="selector"
+          value="{{order.order_status}}"
+          range="{{statusOptions}}"
+          range-key="label"
+          data-id="{{order.order_id}}"
+          bindchange="updateStatus"
+        >
+          <view class="status-text">
+            {{ statusOptions[(order.order_status ? order.order_status - 1 : 0)].label }}
+          </view>
+        </picker>
+      </view>
+
+      <!-- 商品列表 -->
+      <block wx:for="{{order.items}}" wx:for-item="item" wx:key="product_id">
+        <view class="product-item">
+          <image class="product-img" src="{{item.image}}" mode="aspectFill" />
+          <view class="product-info">
+            <text class="product-name">{{item.name}}</text>
+            <text class="product-spec">{{item.selectedSpec}}</text>
+          </view>
+          <view class="product-meta">
+            <text class="product-price">￥{{item.price}}</text>
+            <text class="product-quantity">x{{item.quantity}}</text>
+          </view>
+        </view>
+      </block>
+
+      <!-- 底部：小计+删除按钮 -->
+      <view class="order-footer">
+        <text class="total-label">小计：</text>
+        <text class="total-price">￥{{order.total}}</text>
+        <view
+          class="delete-btn"
+          data-id="{{order.order_id}}"
+          bindtap="deleteOrder"
+        >
+          删除订单
+        </view>
+      </view>
+
+    </view>
+  </block>
+</view>

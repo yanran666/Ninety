@@ -29,7 +29,7 @@ Page({
   },
 
   goToManageOrders() {
-    wx.navigateTo({ url: '/pages/admin/orders' });
+    wx.navigateTo({ url: '/subpackages/admin/manage-orders/manage-orders' });
   },
 
   clearCart() {

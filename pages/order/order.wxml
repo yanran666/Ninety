@@ -14,7 +14,7 @@
 
       <!-- 下单时间 -->
       <view class="order-time">
-        {{order.createdAt}}
+        {{order.formattedTime}}
       </view>
 
       <!-- 商品列表 -->

@@ -51,7 +51,7 @@ Page({
       stock: 0,
       category: '未分类',
       description: '',
-      image: 'https://cdn-icons-png.flaticon.com/512/2917/2917993.png'
+      image: 'https://images.icon-icons.com/2218/PNG/512/celebration_wine_champion_drink_party_icon_134287.png'
     };
   
     wx.request({

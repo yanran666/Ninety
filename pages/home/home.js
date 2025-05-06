@@ -1,3 +1,4 @@
+const { baseURL } = require('../../utils/baseURL');
 // pages/home/home.js
 Page({
 
@@ -13,19 +14,19 @@ Page({
     selectedMode: '到店取',
     swiperList:[
       {
-        value: `http://192.168.236.51:3000/public/images/carousel1.jpg`,
+        value: `${baseURL}/public/images/carousel1.jpg`,
         ariaLabel: '图片1',
       },
       {
-        value: `http://192.168.236.51:3000/public/images/carousel2.jpg`,
+        value: `${baseURL}/public/images/carousel2.jpg`,
         ariaLabel: '图片2',
       },
       {
-        value: `http://192.168.236.51:3000/public/images/carousel3.jpg`,
+        value: `${baseURL}/public/images/carousel3.jpg`,
         ariaLabel: '图片3',
       },
       {
-        value: `http://192.168.236.51:3000/public/images/carousel2.jpg`,
+        value: `${baseURL}/public/images/carousel2.jpg`,
         ariaLabel: '图片2',
       },
     ],

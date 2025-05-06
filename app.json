@@ -8,7 +8,10 @@
   "subpackages": [
     {
       "root": "subpackages/shop",
-      "pages": ["detail/detail", "checkout/checkout"]
+      "pages": [
+        "detail/detail",
+        "checkout/checkout"
+      ]
     },
     {
       "root": "subpackages/user",
@@ -19,7 +22,10 @@
     },
     {
       "root": "subpackages/admin",
-      "pages": ["manage-goods/manage-goods"]
+      "pages": [
+        "manage-goods/manage-goods",
+        "manage-orders/manage-orders"
+      ]
     }
   ],
   "window": {

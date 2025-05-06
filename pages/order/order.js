@@ -18,7 +18,16 @@ Page({
       method: 'GET',
       data: { user_id },
       success: (res) => {
-        this.setData({ orders: res.data.reverse() });
+        // 先把数组倒序、然后格式化时间
+        const formatted = res.data.reverse().map(order => ({
+          ...order,
+          // 格式化 createdAt 字符串，去掉 T、毫秒和 Z，只保留到分钟
+          formattedTime: order.createdAt
+            .replace('T', ' ')
+            .replace(/\.\d+Z$/, '')
+            .slice(0, 16)
+        }));
+        this.setData({ orders: formatted });
       },
       fail: (err) => {
         console.error('[获取订单失败]', err);
